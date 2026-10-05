@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ロボットに足は必要？ | 科学教室</title>
+<style>
+:root{--bg:#f7f8f6;--paper:#fff;--ink:#222;--muted:#66706a;--line:#d8ddd9;--green:#315a45;--soft:#eef3ef;--yellow:#fff5c9;--blue:#edf5f7;--pink:#f8eeee}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Yu Gothic",Meiryo,sans-serif;line-height:1.8;color:var(--ink);background:var(--bg)}
+a{color:inherit}
+button{font:inherit}
+.wrap{max-width:1040px;margin:auto;padding:0 24px}
+header{background:linear-gradient(135deg,#fff5c9,#edf5f7);border-bottom:1px solid var(--line);padding:42px 0}
+.bread{font-size:.86rem;color:var(--muted);margin-bottom:12px}
+h1{font-size:clamp(2.15rem,6vw,4rem);line-height:1.15;margin:.18em 0}
+.lead{font-size:1.18rem;font-weight:700;max-width:780px}
+section{padding:40px 0}
+.question{font-size:clamp(1.45rem,3vw,2.1rem);line-height:1.45;margin:0 0 20px}
+.choice-row{display:flex;gap:12px;flex-wrap:wrap}
+.choice{min-width:92px;min-height:48px;border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:10px 16px;cursor:pointer;font-weight:800}
+.choice:hover,.choice:focus{border-color:#89a492;outline:none}
+.choice.selected{background:var(--soft);border-color:#89a492;color:var(--green)}
+.reply{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px;min-height:74px}
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.env{border:1px solid var(--line);background:var(--paper);border-radius:16px;padding:18px 12px;text-align:center;cursor:pointer;min-height:92px}
+.env b{display:block;font-size:1.05rem}
+.env span{font-size:.82rem;color:var(--muted)}
+.env.selected{background:var(--blue);border-color:#9db8bf}
+.focus{background:#24372d;color:#fff;border-radius:20px;padding:28px}
+.focus h2{margin-top:0;font-size:1.65rem}
+.focus-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+.focus-item{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:16px}
+.observe{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px}
+.card h3{margin-top:0}
+.big-end{background:linear-gradient(135deg,var(--soft),#fff);border:1px solid var(--line);border-radius:20px;padding:28px}
+.big-end strong{font-size:1.25rem;color:var(--green)}
+.links{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.linkbtn{display:inline-block;text-decoration:none;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 14px;color:var(--green);font-weight:700}
+footer{border-top:1px solid var(--line);padding:28px 0 48px;color:var(--muted);font-size:.9rem}
+footer a{color:var(--green)}
+@media(max-width:760px){.grid5{grid-template-columns:repeat(2,1fr)}.focus-grid{grid-template-columns:repeat(2,1fr)}.observe{grid-template-columns:1fr}}
+@media(max-width:420px){.grid5,.focus-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="bread"><a href="/university/science/">科学教室</a> ＞ <a href="/university/science/robot/">ロボット</a> ＞ ロボットに足は必要？</div>
+<h1>ロボットに足は必要？</h1>
+<p class="lead">虫型ロボットの足は、2本・4本・6本。どれがよいでしょう？<br>まずは、自分の予想を決めてみよう。</p>
+</div></header>
+
+<main>
+<section><div class="wrap">
+<h2 class="question">2本・4本・6本。あなたならどれを選ぶ？</h2>
+<div class="choice-row" id="legChoices">
+<button class="choice" type="button" data-leg="2本">2本</button>
+<button class="choice" type="button" data-leg="4本">4本</button>
+<button class="choice" type="button" data-leg="6本">6本</button>
+</div>
+<div class="reply" id="legReply" aria-live="polite">どれを選んでもOK。理由も考えてみてください。</div>
+</div></section>
+
+<section><div class="wrap">
+<h2 class="question">でも……そもそも、足は必要？</h2>
+<p>場所が変わったら、よい動き方も変わるかもしれません。気になる場所を押してみよう。</p>
+<div class="grid5" id="envChoices">
+<button class="env" type="button" data-env="床"><b>床</b><span>かたい・平ら？</span></button>
+<button class="env" type="button" data-env="月面"><b>月面</b><span>重力や地面は？</span></button>
+<button class="env" type="button" data-env="水中"><b>水中</b><span>泳ぐ方がいい？</span></button>
+<button class="env" type="button" data-env="泥"><b>泥</b><span>沈む？すべる？</span></button>
+<button class="env" type="button" data-env="ゲル"><b>ゲル</b><span>くねくね進める？</span></button>
+</div>
+<div class="reply" id="envReply" aria-live="polite">同じロボットでも、環境が変わると「よい形」は変わるかもしれません。</div>
+</div></section>
+
+<section><div class="wrap">
+<div class="focus">
+<h2>今回の実験では、ここに注目します</h2>
+<p>ロボットの<strong>足の本数・形・材質・やわらかさ</strong>を変えると、動きはどう変わるでしょう？</p>
+<div class="focus-grid">
+<div class="focus-item"><b>足の本数</b><br>2本？4本？6本？</div>
+<div class="focus-item"><b>形</b><br>長い？短い？曲がっている？</div>
+<div class="focus-item"><b>材質</b><br>すべりやすい？すべりにくい？</div>
+<div class="focus-item"><b>やわらかさ</b><br>かたい？バネ？やわらかい？</div>
+</div>
+</div>
+</div></section>
+
+<section><div class="wrap">
+<h2 class="question">見て、くらべて、メモしてみよう</h2>
+<div class="observe">
+<div class="card">
+<h3>動きを見る</h3>
+<ul>
+<li>どれが速い？</li>
+<li>どれが安定している？</li>
+<li>曲がりやすい？</li>
+<li>すべる？ つまずく？</li>
+</ul>
+</div>
+<div class="card">
+<h3>ちがいを考える</h3>
+<ul>
+<li>足のどこがちがう？</li>
+<li>材質は同じ？</li>
+<li>やわらかさは？</li>
+<li>予想と同じだった？</li>
+</ul>
+</div>
+</div>
+</div></section>
+
+<section><div class="wrap">
+<div class="big-end">
+<strong>「一番よい足」は、ひとつとは限りません。</strong>
+<p>どこを動くのか。何をしたいロボットなのか。条件が変わると、答えも変わるかもしれません。</p>
+<p>今回の実験では「足」に注目しました。でも、ロボットには形、センサ、動かし方、AIなど、まだいろいろな見方があります。</p>
+<div class="links">
+<a class="linkbtn" href="/university/science/robot/">ロボットの入口へ</a>
+<a class="linkbtn" href="/university/">もっと深く：バイオメカトロニクス研究室へ</a>
+</div>
+</div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<a href="/university/science/">← 科学教室へ</a>
+</div></footer>
+
+<script>
+(function(){
+  const legButtons=[...document.querySelectorAll('#legChoices .choice')];
+  const legReply=document.getElementById('legReply');
+  legButtons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      legButtons.forEach(b=>b.classList.remove('selected'));
+      btn.classList.add('selected');
+      legReply.textContent=btn.dataset.leg+'を選びました。では、速さ・安定・曲がりやすさのどれを大事にする？ 場所が変わっても同じ答えかな？';
+    });
+  });
+
+  const envTexts={
+    '床':'床なら、すべりやすさや安定のしかたが気になります。足の形や材質で変わるかな？',
+    '月面':'月面では重力や地面の状態が地球とちがいます。同じ足でうまく動けるかな？',
+    '水中':'水中では、足で歩くより泳ぐ方がよいこともあります。足がない形も考えられそうです。',
+    '泥':'泥では足が沈んだり、すべったりします。広い足？細い足？別の動き方？',
+    'ゲル':'ゲルの中なら、足より体をくねくね動かす方が進みやすいかもしれません。'
+  };
+  const envButtons=[...document.querySelectorAll('#envChoices .env')];
+  const envReply=document.getElementById('envReply');
+  envButtons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      envButtons.forEach(b=>b.classList.remove('selected'));
+      btn.classList.add('selected');
+      envReply.textContent=envTexts[btn.dataset.env];
+    });
+  });
+})();
+</script>
+</body>
+</html>
